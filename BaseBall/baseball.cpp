@@ -17,5 +17,10 @@ public:
 				throw invalid_argument("Must be number");
 			}
 		}
-	};
+		if (string[0] == string[1] ||
+			string[1] == string[2] ||
+			string[0] == string[2]) {
+			throw invalid_argument("Must not have the same number");
+		}
+	}
 };

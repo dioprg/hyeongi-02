@@ -5,21 +5,24 @@ using namespace std;
 class BaseballGame
 {
 public:
-	void guess(string string)
+	bool isDuplicatedNumber(string guessNumber)
 	{
-		if (string.length() != 3) {
+		return guessNumber[0] == guessNumber[1] ||
+			guessNumber[1] == guessNumber[2] ||
+			guessNumber[0] == guessNumber[2];
+	}
+
+	void guess(string guessNumber)
+	{
+		if (guessNumber.length() != 3) {
 			throw length_error("Must be three letters.");
 		}
-		for (auto ch : string)
+		for (auto ch : guessNumber)
 		{
-			if (ch < '0' || ch > '9')
-			{
-				throw invalid_argument("Must be number");
-			}
+			if (ch >= '0' && ch <= '9') continue;
+			throw invalid_argument("Must be number");
 		}
-		if (string[0] == string[1] ||
-			string[1] == string[2] ||
-			string[0] == string[2]) {
+		if (isDuplicatedNumber(guessNumber)) {
 			throw invalid_argument("Must not have the same number");
 		}
 	}
